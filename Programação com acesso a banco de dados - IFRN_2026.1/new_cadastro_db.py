@@ -4,7 +4,7 @@ conexao = mariadb.connect(
     host="localhost",
     user="root",
     password="",
-    database="escola"
+    database="loja"
 )
 
 cursor = conexao.cursor()

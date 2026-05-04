@@ -45,18 +45,20 @@ class Ui_MainWindow(object):
 
     def marcar(self):
         matricula = self.lineEdit.text()
+
+        datahora = QDateTime.currentDateTime().toString("yyyy-MM-dd HH:mm:ss")
+
         sql = f'''
             INSERT INTO ponto02
             VALUES(
                 null,
                 {matricula},
-                now()
+                {datahora}
                 );'''
         
         cursor.execute(sql)
         conexao.commit()
 
-        datahora = QDateTime.currentDateTime().toString("dd-MM-yyyy HH:mm:ss")
 
         msg = QMessageBox()
         msg.setText(f"PONTO MARCADO\n{datahora}")

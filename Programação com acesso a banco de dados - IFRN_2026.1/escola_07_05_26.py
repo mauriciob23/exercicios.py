@@ -61,7 +61,7 @@ class Ui_MainWindow(object):
 
         texto = ""
 
-        texto += str(cursor.rowcount) + " resultado(s) encontrado(s):\n\n"
+        texto += str(cursor.rowcount) + " resultado(s) encontrado(s):\n\n"      # Conta os resultados encontrados
 
 
         for linha in cursor:

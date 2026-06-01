@@ -1,7 +1,14 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_Menu(object):
+    usuario = ""
+
+    def __init__(self, usuario_):
+        super().__init__()
+        self.usuario = usuario_
+
+
     def setupUi(self, Menu):
         Menu.setObjectName("Menu")
         Menu.resize(364, 394)
@@ -23,10 +30,10 @@ class Ui_Menu(object):
         self.actionUsuario.setObjectName("actionUsuario")
         self.actionProduto = QtWidgets.QAction(Menu)
         self.actionProduto.setObjectName("actionProduto")
-        
+
         # associar o menu a uma função
         self.actionProduto.triggered.connect(self.cadastrar_produto)
-        
+
         self.actionSair = QtWidgets.QAction(Menu)
         self.actionSair.setObjectName("actionSair")
         self.actionUsu_rio_2 = QtWidgets.QAction(Menu)
@@ -36,9 +43,9 @@ class Ui_Menu(object):
 
         self.actionProduto_2 = QtWidgets.QAction(Menu)
         self.actionProduto_2.setObjectName("actionProduto_2")
-        
+
         self.actionProduto_2.triggered.connect(self.pesquisar_produto)
-        
+
         self.menuCadastro.addAction(self.actionUsuario)
         self.menuCadastro.addAction(self.actionProduto)
         self.menuCadastro.addSeparator()
@@ -58,7 +65,9 @@ class Ui_Menu(object):
         self.menuRelat_rio.setTitle(_translate("Menu", "Relatório"))
         self.actionUsuario.setText(_translate("Menu", "Usuário"))
         self.actionProduto.setText(_translate("Menu", "Produto"))
-        self.menuRelat_rio.setTitle(_translate("Menu", "IFGO")) # TA SUBSTITUINDO A TELA DE RELATORIO
+        self.menuRelat_rio.setTitle(
+            _translate("Menu", "IFGO")
+        )  # TA SUBSTITUINDO A TELA DE RELATORIO
 
         self.actionProduto.setShortcut(_translate("Menu", "Alt+P"))
         self.actionSair.setText(_translate("Menu", "Sair"))
@@ -66,37 +75,40 @@ class Ui_Menu(object):
         self.actionProduto_2.setText(_translate("Menu", "Produto"))
 
     def cadastrar_produto(self):
-        #print("A janela de cadastro do produto foi aberta.")
-        
+        # print("A janela de cadastro do produto foi aberta.")
+
         # exibe o texto no status / tempo em milisegundos
-        self.statusbar.showMessage("Abriu o Cadastro de Produto",3000)
-        #self.statusbar.clearMessage() # apaga manualmente
-        
+        self.statusbar.showMessage("Abriu o Cadastro de Produto", 3000)
+        # self.statusbar.clearMessage() # apaga manualmente
+
         # abrir outra janela
         from tela_cadastro import Ui_MainWindow
+
         self.tela = QtWidgets.QMainWindow()
         self.cad = Ui_MainWindow()
         self.cad.setupUi(self.tela)
         self.tela.show()
-    
+
     def pesquisar_produto(self):
         from pesquisa import Ui_Pesquisar
+
         self.tela2 = QtWidgets.QMainWindow()
         self.pesq = Ui_Pesquisar()
         self.pesq.setupUi(self.tela2)
         self.tela2.show()
-        
+
     def mostrar_ifgo(self):
         from ifgo import Ui_ifgo
+
         self.tela3 = QtWidgets.QDialog()
         self.ifgo = Ui_ifgo()
         self.ifgo.setupUi(self.tela3)
         self.tela3.show()
 
 
-
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Menu = QtWidgets.QMainWindow()
     ui = Ui_Menu()

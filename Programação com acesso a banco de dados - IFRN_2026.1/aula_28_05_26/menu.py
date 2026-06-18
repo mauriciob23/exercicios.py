@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_Menu(object):
-    usuario = ""
+    usuario = ""            # Aparece o nome do usuario
 
     def __init__(self, usuario_):
         super().__init__()
@@ -31,8 +31,10 @@ class Ui_Menu(object):
         self.actionProduto = QtWidgets.QAction(Menu)
         self.actionProduto.setObjectName("actionProduto")
 
-        # associar o menu a uma função
+        # associar o menu a uma função #
         self.actionProduto.triggered.connect(self.cadastrar_produto)
+
+        ################################
 
         self.actionSair = QtWidgets.QAction(Menu)
         self.actionSair.setObjectName("actionSair")
@@ -45,6 +47,11 @@ class Ui_Menu(object):
         self.actionProduto_2.setObjectName("actionProduto_2")
 
         self.actionProduto_2.triggered.connect(self.pesquisar_produto)
+
+        ## IF para caso o usuario tenha permissão para adicionar item ou não - se for gerente, tem acesso a cadastro ##
+        if self.usuario == "gerente":
+            self.menuCadastro = QtWidgets.QAction(Menu)
+
 
         self.menuCadastro.addAction(self.actionUsuario)
         self.menuCadastro.addAction(self.actionProduto)
@@ -61,6 +68,10 @@ class Ui_Menu(object):
     def retranslateUi(self, Menu):
         _translate = QtCore.QCoreApplication.translate
         Menu.setWindowTitle(_translate("Menu", "Menu do Sistema"))
+        
+        if self.usuario == "gerente":
+            self.menuRelat_rio.setTitle(_translate())
+
         self.menuCadastro.setTitle(_translate("Menu", "Cadastro"))
         self.menuRelat_rio.setTitle(_translate("Menu", "Relatório"))
         self.actionUsuario.setText(_translate("Menu", "Usuário"))
